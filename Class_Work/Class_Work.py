@@ -12,8 +12,11 @@ principal = float(input("Enter the principal amount: "))
 annual_interest_rate = float(input("Enter the annual interest rate: "))
 annual_duration = int(input("Enter the duration of the loan: "))
 
-monthly_rate = float((annual_interest_rate/100) / 12)
-monthly_duration = int(annual_duration * 12)
+
+PERCENTAGE = 100
+MONTHS_IN_YEAR = 12
+monthly_rate = float((annual_interest_rate/PERCENTAGE) / MONTHS_IN_YEAR)
+monthly_duration = int(annual_duration * MONTHS_IN_YEAR)
 
 monthly_payment = principal * (monthly_rate * (1 + monthly_rate) ** monthly_duration) / ((1 + monthly_rate) ** monthly_duration - 1)
 
