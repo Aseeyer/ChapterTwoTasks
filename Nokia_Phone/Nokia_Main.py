@@ -271,10 +271,10 @@ Security Settings:
                 match sec:
                     case 1: print("You selected: PIN Code Request")
                     case 2: print("You selected: Call Barring Service")
-                    case 3: print("You selected: Fixed Dialing")
+          	    case 3: print("You selected: Fixed Dialing")
                     case 4: print("You selected: Closed User Group")
                     case 5: print("You selected: Phone Security")
-                    case 6: print("You selected: Change Access Codes")
+            		case 6: print("You selected: Change Access Codes")
                     case _: print("Invalid Security Settings selection")
             case 4:
                 print("You selected: Restore Factory Settings")
@@ -298,7 +298,7 @@ Clock:
 5. Countdown Timer
 6. Auto Update of Date and Time
 """)
-        clock = int(input("Enter a selection: "))
+        clock : int(input("Enter a selection: "))
         match clock:
             case 1: print("You selected: Alarm Clock")
             case 2: print("You selected: Clock Settings")
