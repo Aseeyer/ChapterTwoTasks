@@ -1,4 +1,4 @@
-#    NUMBER 3.1
+"""#    NUMBER 3.1
 passes = 0
 
 for student in range(10):
@@ -151,8 +151,156 @@ else:
 
 #    NUMBER 3.13
 
+integer = int(input("Enter a non-negative integer: "))
+factorial = 1
+for number in range(1, integer + 1):
+    factorial *= number
+print(f"The factorial of {integer} is {factorial}")
+
+#    NUMBER 3.14"""
 
 
+
+#    NUMBER 3.15
+
+factorial = 1
+constant_e = 1
+for number in range(1, 11):
+    factorial *= number
+    print
+    constant_e += 1 / factorial
+print("The estimated value is ", constant_e)
+
+
+#    NUMBER 3.16
+
+largest = 0
+second_largest = 0
+
+for num in range(10):
+    number = int(input("Enter a number: "))
+    if number > largest:
+        second_largest = largest
+        largest = number
+    elif number > second_largest:
+        second_largest = number
+
+print("Largest:", largest)
+print("Second largest:", second_largest)
+
+
+#    NUMBER 3.17
+
+# (a)
+for i in range(1, 11):
+    print('*' * i)
+print()
+
+# (b)
+for i in range(10, 0, -1):
+    print('*' * i)
+print()
+
+# (c)
+for i in range(10, 0, -1):
+    print(' ' * (10 - i) + '*' * i)
+print()
+
+# (d)
+for i in range(1, 11):
+    print(' ' * (10 - i) + '*' * i)
+
+
+#    NUMBER 3.18
+
+rows = 10
+
+for i in range(1, rows + 1):
+    # Pattern (a)
+    print('*' * i + ' ' * (rows - i), end='   ')
+    
+    # Pattern (b)
+    print('*' * (rows - i + 1) + ' ' * (i - 1), end='   ')
+    
+    # Pattern (c)
+    print(' ' * (i - 1) + '*' * (rows - i + 1), end='   ')
+    
+    # Pattern (d)
+    print(' ' * (rows - i) + '*' * i)
+
+#    NUMBER 3.19
+
+for side1 in range(1, 21):
+    for side2 in range(1, 21):
+        for hypotenuse in range(1, 21):
+            if side1**2 + side2**2 == hypotenuse**2:
+                print(side1, side2, hypotenuse)
+
+#    NUMBER 3.20
+
+binary = int(input("Enter a binary number: "))
+decimal = 0
+power = 0
+
+while binary > 0:
+    digit = binary % 10
+    decimal += digit * (2 ** power)
+    power += 1
+    binary //= 10
+
+print("Decimal:", decimal)
+
+
+# NUMBER 3.21
+
+price = float(input("Enter purchase price (<= 1 dollar): "))
+change = int(round((1 - price) * 100))
+
+quarters = change // 25
+change = change % 25
+
+dimes = change // 10
+change = change % 10
+
+nickels = change // 5
+pennies = change % 5
+
+print("Your change is:")
+print(quarters, "quarters")
+print(dimes, "dimes")
+print(nickels, "nickels")
+print(pennies, "pennies")
+
+
+#    NUMBER 3.22
+
+for i in range(2):
+    value = int(input('Enter an integer (-1 to break): '))
+    print('You entered:', value)
+    if value == -1:
+        break
+else:
+    print('The loop terminated without executing the break')
+
+#    NUMBER 3.23
+
+grade = 93
+if grade >= 90:
+  print('A')
+  print('Great Job!')
+  print('Take a break from studying')
+
+
+#    NUMBER 3.24
+#    NUMBER 3.25
+#    NUMBER 3.26
+#    NUMBER 3.27
+
+
+#    NUMBER 3.28
+#    NUMBER 3.29
+#    NUMBER 3.30
+#    NUMBER 3.31
 
 
 
