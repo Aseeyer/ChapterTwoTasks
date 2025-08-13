@@ -1,4 +1,4 @@
-#    NUMBER 3.1
+"""#    NUMBER 3.1
 passes = 0
 
 for student in range(10):
@@ -157,7 +157,7 @@ for number in range(1, integer + 1):
     factorial *= number
 print(f"The factorial of {integer} is {factorial}")
 
-#    NUMBER 3.14"""
+#    NUMBER 3.14
 
 
 
@@ -169,7 +169,7 @@ for number in range(1, 11):
     factorial *= number
     print
     constant_e += 1 / factorial
-print("The estimated value is ", constant_e)
+print("The estimated value is ", constant_e)"""
 
 
 #    NUMBER 3.16
@@ -177,16 +177,18 @@ print("The estimated value is ", constant_e)
 largest = 0
 second_largest = 0
 
-for num in range(10):
+for _ in range(10):
     number = int(input("Enter a number: "))
+    
     if number > largest:
         second_largest = largest
         largest = number
-    elif number > second_largest:
+    elif number > second_largest and number != largest:
         second_largest = number
 
 print("Largest:", largest)
 print("Second largest:", second_largest)
+
 
 
 #    NUMBER 3.17
