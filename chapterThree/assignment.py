@@ -1,4 +1,4 @@
-"""#    NUMBER 3.1
+#    NUMBER 3.1
 passes = 0
 
 for student in range(10):
