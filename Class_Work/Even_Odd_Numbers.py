@@ -1,6 +1,9 @@
-for number in range(51):
-    if number % 2 == 0:
-        print(number ** 3, end=',')
+def get_even_odd(number):
+        if number % 2 == 0:
+            return number ** 3
    
-    elif number % 2 != 0:
-        print(number ** 2, end=',')
+        else:
+            return number ** 2
+
+
+print(get_even_odd(500))
