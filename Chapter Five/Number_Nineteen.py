@@ -10,12 +10,12 @@ people = [
     ("Aseeyer", "Asee")
 ]
 
-people_bearing_jones = list(filter(lambda person: person[1] == "Eze", people))
+people_bearing_Eze= list(filter(lambda person: person[1] == "Eze", people))
 
-print("People with last name Eze:", people_bearing_jones)
+print("People with last name Eze:", people_bearing_Eze)
 
 
 #Just another alternative using list comprehension
-jones_people2 = [person for person in people if person[1] == "Jones"]
+people_bearing_Eze2 = [person for person in people if person[1] == "Eze"]
 
-print("People with last name Jones (list comprehension):", jones_people2)
+print("People with last name Eze (list comprehension):", people_bearing_Eze2)
