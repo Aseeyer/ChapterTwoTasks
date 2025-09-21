@@ -1,7 +1,6 @@
-# Discussion: Dictionary Methods
-
-
 """
+Discussion: Dictionary Methods
+
 
 a) In Python, there’s no dedicated add method for dictionaries.
 To add a new key–value pair, you simply assign it directly, for example: my_dict["name"] = "John".
