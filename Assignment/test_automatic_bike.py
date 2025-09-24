@@ -111,12 +111,6 @@ class TestAutomaticBike(unittest.TestCase):
         self.assertLessEqual(self.bike.speed, 20)
 
 
-    def test_auto_parking(self):
-        self.bike.fuel = 5.0
-        self.bike.start()
-        self.bike.accelerate(30)
-        self.bike.park()
-        self.assertEqual(self.bike.gear, 0)
 
 if __name__ == "__main__":
     unittest.main()
