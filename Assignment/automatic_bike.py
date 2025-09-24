@@ -1,8 +1,19 @@
-from types import new_class
-
-
 class BikeError(Exception):
     pass
+
+class Camera:
+    def __init__(self, darkness=0.3, brake_distance=5.0):
+        self.darkness = darkness
+        self.brake_distance = brake_distance
+
+    def detect_darkness(self, light_level):
+        return light_level < self.darkness
+
+    def detect_close_object(self, distance):
+        return distance < self.brake_distance
+
+
+
 
 class AutomaticBike:
     def __init__(self, max_speed=140, fuel_capacity=15.0):
@@ -16,7 +27,6 @@ class AutomaticBike:
         self.horn_sound = "Beep!"
         self.fuel = fuel_capacity
         self._fuel_consumption_per_unit = 0.02
-
 
     def start(self):
         if self.fuel <= 0:
@@ -75,11 +85,9 @@ class AutomaticBike:
         if self.fuel <= 0:
             self.stop()
             raise BikeError("Out of fuel - engine stopped.")
-
         desired = self.speed + delta
         actual_target = min(desired, float(self.max_speed))
         fuel_needed = (actual_target - self.speed) * self._fuel_consumption_per_unit
-
         if fuel_needed <= self.fuel:
             self.speed = actual_target
             self.fuel -= fuel_needed
@@ -89,7 +97,6 @@ class AutomaticBike:
             self.fuel = 0.0
             self.stop()
             raise BikeError("Ran out of fuel during acceleration; engine stopped.")
-
         if self.mode == "automatic":
             self._update_gear_automatic()
 
@@ -117,27 +124,35 @@ class AutomaticBike:
             raise ValueError("Gear must be between 0 and 5.")
         self.gear = gear
 
+    def auto_lights(self, camera, light_level):
+        if camera.detect_darkness(light_level):
+            self.lights_on = True
+            print("Automatic: Lights turned ON due to darkness.")
+        else:
+            self.lights_on = False
+            print("Automatic: Lights turned OFF, it's bright enough.")
 
-
-
-
-
-
-
-
-
+    def auto_brake(self, camera, distance):
+        if camera.detect_close_object(distance):
+            self.brake(10)
+            print("Automatic: Emergency brake applied! Object too close.")
 
 if __name__ == "__main__":
     my_power_bike = AutomaticBike()
+    cam = Camera()
 
     try:
         my_power_bike.start()
         print("Bike started. Engine on:", my_power_bike.engine_on)
 
+        my_power_bike.auto_lights(cam, light_level=0.2)
+
         my_power_bike.accelerate(20)
         print(f"Speed after accelerating: {my_power_bike.speed} km/h")
         print(f"Current gear: {my_power_bike.gear}")
         print(f"Fuel left: {my_power_bike.fuel:.2f} L")
+
+        my_power_bike.auto_brake(cam, distance=3)
 
         my_power_bike.toggle_lights()
         print("Lights on:", my_power_bike.lights_on)
@@ -155,4 +170,3 @@ if __name__ == "__main__":
         print("Bike error:", e)
     except Exception as e:
         print("Other error:", e)
-
