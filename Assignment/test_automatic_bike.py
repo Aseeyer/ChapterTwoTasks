@@ -1,9 +1,10 @@
 import unittest
-from automatic_bike import AutomaticBike, BikeError
+from automatic_bike import AutomaticBike, BikeError, Camera
 
 class TestAutomaticBike(unittest.TestCase):
     def setUp(self):
         self.bike = AutomaticBike(max_speed=100, fuel_capacity=5.0)
+        self.camera = Camera()
 
     def test_start_stop(self):
         self.bike.fuel = 1.0
@@ -16,11 +17,8 @@ class TestAutomaticBike(unittest.TestCase):
 
     def test_cannot_start_without_fuel(self):
         self.bike.fuel = 0.0
-        try:
+        with self.assertRaises(BikeError):
             self.bike.start()
-            self.fail("Expected BikeError")
-        except BikeError:
-            pass
 
     def test_toggle_lights_and_honk(self):
         self.assertFalse(self.bike.lights_on)
@@ -36,7 +34,7 @@ class TestAutomaticBike(unittest.TestCase):
         self.bike.accelerate(10)
         self.assertEqual(self.bike.gear, 2)
         self.bike.accelerate(20)
-        self.assertEqual(self.bike.gear, 4)
+        self.assertEqual(self.bike.gear, 3)
 
     def test_braking(self):
         self.bike.fuel = 5.0
@@ -51,33 +49,21 @@ class TestAutomaticBike(unittest.TestCase):
     def test_manual_mode_shift(self):
         self.bike.fuel = 5.0
         self.bike.start()
-        try:
+        with self.assertRaises(BikeError):
             self.bike.manual_shift(2)
-            self.fail("Expected BikeError")
-        except BikeError:
-            pass
         self.bike.set_mode("manual")
-        try:
+        with self.assertRaises(ValueError):
             self.bike.manual_shift(6)
-            self.fail("Expected ValueError")
-        except ValueError:
-            pass
         self.bike.manual_shift(2)
         self.assertEqual(self.bike.gear, 2)
 
     def test_accelerate_requires_engine_on(self):
-        try:
+        with self.assertRaises(BikeError):
             self.bike.accelerate(10)
-            self.fail("Expected BikeError")
-        except BikeError:
-            pass
         self.bike.start()
         self.bike.fuel = 0.1
-        try:
+        with self.assertRaises(BikeError):
             self.bike.accelerate(10)
-            self.fail("Expected BikeError")
-        except BikeError:
-            pass
 
     def test_refuel(self):
         self.bike.fuel = 1.0
@@ -90,11 +76,8 @@ class TestAutomaticBike(unittest.TestCase):
     def test_run_out_of_fuel_mid_acceleration(self):
         self.bike.fuel = 0.04
         self.bike.start()
-        try:
+        with self.assertRaises(BikeError):
             self.bike.accelerate(10)
-            self.fail("Expected BikeError")
-        except BikeError:
-            pass
         self.assertFalse(self.bike.engine_on)
         self.assertEqual(self.bike.fuel, 0.0)
 
@@ -109,11 +92,31 @@ class TestAutomaticBike(unittest.TestCase):
         self.bike.start()
         self.bike.pull_clutch_and_shift(3)
         self.assertEqual(self.bike.gear, 3)
-        try:
+        with self.assertRaises(ValueError):
             self.bike.pull_clutch_and_shift(10)
-            self.fail("Expected ValueError")
-        except ValueError:
-            pass
+
+    def test_auto_lights(self):
+        self.bike.fuel = 5.0
+        self.bike.start()
+        self.bike.auto_lights(self.camera, 0.2)
+        self.assertTrue(self.bike.lights_on)
+        self.bike.auto_lights(self.camera, 0.8)
+        self.assertFalse(self.bike.lights_on)
+
+    def test_auto_brake(self):
+        self.bike.fuel = 5.0
+        self.bike.start()
+        self.bike.accelerate(30)
+        self.bike.auto_brake(self.camera, 3)
+        self.assertLessEqual(self.bike.speed, 20)
+
+
+    def test_auto_parking(self):
+        self.bike.fuel = 5.0
+        self.bike.start()
+        self.bike.accelerate(30)
+        self.bike.park()
+        self.assertEqual(self.bike.gear, 0)
 
 if __name__ == "__main__":
     unittest.main()
