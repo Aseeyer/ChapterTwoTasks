@@ -13,5 +13,12 @@ class TestNokiaMenu(unittest.TestCase):
         self.assertIn("2. Messages", output)
         self.assertIn("3. Chat", output)
 
+    def test_that_main_menu_display(self):
+        menu = Menu("Main Menu")
+        menu.add_item(MenuItem("Phone book"))
+        menu.add_item(MenuItem("Messages"))
+        menu.add_item(MenuItem("Chat"))
+
+
 if __name__ == "__main__":
     unittest.main()
