@@ -16,3 +16,9 @@ class Menu:
         for i, item in enumerate(self.items, start=1):
             output += f" {i}. {item.title}\n"
         return output
+
+    def select(self, index):
+        if 1 <= index <= len(self.items):
+            return self.items[index - 1]
+        return None
+
