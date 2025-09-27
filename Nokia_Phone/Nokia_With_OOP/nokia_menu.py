@@ -1,6 +1,8 @@
 class MenuItem:
-    def __init__(self, title):
+    def __init__(self, title, submenu=None):
         self.title = title
+        self.submenu = submenu
+
 
 
 class Menu:
