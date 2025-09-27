@@ -5,8 +5,8 @@ class MenuItem:
 
     def display(self):
         print(f"\n{self.name}:")
-        for idx, item in enumerate(self.submenu, start=1):
-            print(f"{idx}. {item.name}")
+        for option_number, item in enumerate(self.submenu, start=1):
+            print(f"{option_number}. {item.name}")
         print("0. Back")
 
     def select(self, choice):
