@@ -21,5 +21,15 @@ class TestNokiaMenu(unittest.TestCase):
         selected_item = main_menu.select(1)
         self.assertEqual(selected_item.title, "Phone book")
 
+    def test_that_menu_item_can_have_a_submenu(self):
+        main_menu = Menu("Main Menu")
+        phone_book_menu = Menu("Phone Book")
+        main_menu.add_item(MenuItem("Phone book", phone_book_menu))
+
+        selected_item = main_menu.select(1)
+        self.assertIsNotNone(selected_item.submenu)
+        self.assertEqual(selected_item.submenu.menu_title, "Phone Book")
+
+
 if __name__ == "__main__":
     unittest.main()
