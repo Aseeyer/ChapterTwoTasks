@@ -48,3 +48,15 @@ class TestFuel(unittest.TestCase):
         self.assertFalse(success)
         self.assertEqual(self.petrol.get_price_per_unit(), 650.0)
 
+    def test_restock_increases_quantity_when_valid(self):
+        success = self.petrol.restock(200)
+        self.assertTrue(success)
+        self.assertEqual(self.petrol.get_available_quantity(), 1200)
+
+    def test_restock_returns_false_for_small_amount(self):
+        success = self.petrol.restock(50)
+        self.assertFalse(success)
+        self.assertEqual(self.petrol.get_available_quantity(), 1000)
+
+
+
