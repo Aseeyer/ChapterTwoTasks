@@ -25,3 +25,5 @@ for number in range(0, 10):
 
 
 
+animals = ["Goat", "Cow", "Cat", "Lion", "Tiger"] 
+print(animals.index("Cat"))
