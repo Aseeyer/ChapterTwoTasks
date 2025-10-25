@@ -31,3 +31,8 @@ class DispenserMachine:
         self.__fuels[fuel.get_name()] = fuel
         return True
 
+    def update_fuel_price(self, fuel_name, new_price):
+        if fuel_name not in self.__fuels:
+            return False
+        fuel = self.__fuels[fuel_name]
+        return fuel.update_price(new_price)
