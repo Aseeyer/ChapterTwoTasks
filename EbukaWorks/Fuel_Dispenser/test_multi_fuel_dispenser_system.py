@@ -75,3 +75,9 @@ class TestDispenserMachine(unittest.TestCase):
         self.assertEqual(len(fuels), 2)
         self.assertEqual(fuels[0]["name"], "Petrol")
         self.assertEqual(fuels[1]["name"], "Diesel")
+
+    def test_dispense_fuel_reduces_quantity_and_returns_cost(self):
+        cost = self.machine.dispense_fuel("Petrol", 10)
+        self.assertEqual(cost, 10 * 650.0)
+        self.assertEqual(self.petrol.get_available_quantity(), 990)
+
