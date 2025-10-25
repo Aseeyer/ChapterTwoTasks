@@ -29,3 +29,13 @@ class TestFuel(unittest.TestCase):
         success = self.petrol.dispense(-10)
         self.assertFalse(success)
         self.assertEqual(self.petrol.get_available_quantity(), 1000)
+
+    def test_get_cost_calculates_correctly(self):
+        cost = self.petrol.get_cost(5)
+        self.assertEqual(cost, 3250.0)
+
+    def test_get_cost_returns_zero_for_invalid_quantity(self):
+        cost = self.petrol.get_cost(-2)
+        self.assertEqual(cost, 0)
+
+   
