@@ -69,3 +69,9 @@ class TestDispenserMachine(unittest.TestCase):
             "Petrol": self.petrol,
             "Diesel": self.diesel
         })
+
+    def test_get_available_fuels_returns_correct_list(self):
+        fuels = self.machine.get_available_fuels()
+        self.assertEqual(len(fuels), 2)
+        self.assertEqual(fuels[0]["name"], "Petrol")
+        self.assertEqual(fuels[1]["name"], "Diesel")
