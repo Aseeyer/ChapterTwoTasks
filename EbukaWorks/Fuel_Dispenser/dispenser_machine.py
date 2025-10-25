@@ -14,4 +14,15 @@ class DispenserMachine:
             for fuel in self.__fuels.values()
         ]
 
+    def dispense_fuel(self, fuel_name, quantity):
+        if fuel_name not in self.__fuels:
+            return "Fuel not found"
+        fuel = self.__fuels[fuel_name]
+        if fuel.get_available_quantity() < quantity or quantity <= 0:
+            return "Insufficient fuel quantity"
+        success = fuel.dispense(quantity)
+        if success:
+            return fuel.get_cost(quantity)
+        return "Unable to dispense fuel"
+
    
