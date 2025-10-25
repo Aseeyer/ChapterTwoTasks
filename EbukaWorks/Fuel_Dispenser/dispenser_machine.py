@@ -25,4 +25,9 @@ class DispenserMachine:
             return fuel.get_cost(quantity)
         return "Unable to dispense fuel"
 
-   
+    def add_fuel(self, fuel):
+        if fuel.get_name() in self.__fuels:
+            return False
+        self.__fuels[fuel.get_name()] = fuel
+        return True
+
