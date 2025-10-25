@@ -26,3 +26,10 @@ class Fuel:
             return 0
         return quantity * self.__price_per_unit
 
+    def update_price(self, new_price):
+        if new_price <= 10:
+            return False
+        self.__price_per_unit = new_price
+        return True
+
+
