@@ -100,3 +100,11 @@ class TestDispenserMachine(unittest.TestCase):
         result = self.machine.add_fuel(duplicate)
         self.assertFalse(result)
 
+    def test_update_fuel_price_changes_existing_price(self):
+        success = self.machine.update_fuel_price("Diesel", 600.0)
+        self.assertTrue(success)
+        self.assertEqual(self.diesel.get_price_per_unit(), 600.0)
+
+    def test_update_fuel_price_returns_false_for_invalid_fuel(self):
+        success = self.machine.update_fuel_price("Kerosene", 500.0)
+        self.assertFalse(success)
