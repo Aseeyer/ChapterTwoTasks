@@ -60,3 +60,12 @@ class TestFuel(unittest.TestCase):
 
 
 
+
+class TestDispenserMachine(unittest.TestCase):
+    def setUp(self):
+        self.petrol = Fuel("Petrol", 650.0, 1000)
+        self.diesel = Fuel("Diesel", 550.0, 800)
+        self.machine = DispenserMachine({
+            "Petrol": self.petrol,
+            "Diesel": self.diesel
+        })
