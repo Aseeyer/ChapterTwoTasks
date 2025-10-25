@@ -81,3 +81,11 @@ class TestDispenserMachine(unittest.TestCase):
         self.assertEqual(cost, 10 * 650.0)
         self.assertEqual(self.petrol.get_available_quantity(), 990)
 
+    def test_dispense_fuel_returns_error_for_invalid_fuel(self):
+        result = self.machine.dispense_fuel("Kerosene", 10)
+        self.assertEqual(result, "Fuel not found")
+
+    def test_dispense_fuel_returns_error_for_insufficient_quantity(self):
+        result = self.machine.dispense_fuel("Diesel", 900)
+        self.assertEqual(result, "Insufficient fuel quantity")
+
