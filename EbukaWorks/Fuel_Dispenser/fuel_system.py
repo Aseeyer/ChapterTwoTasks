@@ -20,3 +20,9 @@ class Fuel:
             return False
         self.__available_quantity -= quantity
         return True
+
+    def get_cost(self, quantity):
+        if quantity <= 0:
+            return 0
+        return quantity * self.__price_per_unit
+
