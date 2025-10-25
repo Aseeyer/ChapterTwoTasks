@@ -89,3 +89,14 @@ class TestDispenserMachine(unittest.TestCase):
         result = self.machine.dispense_fuel("Diesel", 900)
         self.assertEqual(result, "Insufficient fuel quantity")
 
+    def test_add_fuel_adds_new_fuel_successfully(self):
+        kerosene = Fuel("Kerosene", 500.0, 700)
+        result = self.machine.add_fuel(kerosene)
+        self.assertTrue(result)
+        self.assertIn("Kerosene", [f["name"] for f in self.machine.get_available_fuels()])
+
+    def test_add_fuel_returns_false_for_existing_fuel(self):
+        duplicate = Fuel("Petrol", 700.0, 600)
+        result = self.machine.add_fuel(duplicate)
+        self.assertFalse(result)
+
