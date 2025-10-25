@@ -13,4 +13,10 @@ class Fuel:
     def get_available_quantity(self):
         return self.__available_quantity
 
-
+    def dispense(self, quantity):
+        if quantity <= 0:
+            return False
+        if quantity > self.__available_quantity:
+            return False
+        self.__available_quantity -= quantity
+        return True
