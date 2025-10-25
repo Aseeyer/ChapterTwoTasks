@@ -32,4 +32,8 @@ class Fuel:
         self.__price_per_unit = new_price
         return True
 
-
+    def restock(self, amount):
+        if amount < 100:
+            return False
+        self.__available_quantity += amount
+        return True
