@@ -38,4 +38,13 @@ class TestFuel(unittest.TestCase):
         cost = self.petrol.get_cost(-2)
         self.assertEqual(cost, 0)
 
-   
+    def test_update_price_changes_price_when_valid(self):
+        success = self.petrol.update_price(700.0)
+        self.assertTrue(success)
+        self.assertEqual(self.petrol.get_price_per_unit(), 700.0)
+
+    def test_update_price_returns_false_for_invalid_price(self):
+        success = self.petrol.update_price(10)
+        self.assertFalse(success)
+        self.assertEqual(self.petrol.get_price_per_unit(), 650.0)
+
